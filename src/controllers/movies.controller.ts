@@ -36,6 +36,22 @@ export class MoviesController {
     }
   };
 
+  static async getMovie(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const movieDb = await Movie.findByPk(id);
+
+      if (!movieDb) return res.status(404).json({
+        ok: false,
+        msg: `user with id ${id} not found`,
+      });
+
+      return res.status(200).json(movieDb);
+    } catch (error) {
+      res.status(500).json({ error: 'Error al crear la película' });
+    }
+  };
+
   static async createMovie(req: Request, res: Response) {
     try {
       const { name, budget, date, duration } = req.body;
