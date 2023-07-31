@@ -2,12 +2,11 @@ import { Request, Response } from 'express';
 import Movie from '../models/movies.model';
 
 export class MoviesController {
-
   static async getMovies(req: Request, res: Response) {
     try {
 
       const page: number = +req.query.page || 1;
-      const limit: number = +req.query.page || 10;
+      const limit: number = +req.query.limit || 10;
 
       const offset = (page - 1) * limit;
       const { count, rows } = await Movie.findAndCountAll({
@@ -16,13 +15,12 @@ export class MoviesController {
         ],
         offset,
         limit,
-        paranoid: false,
       });
 
       const totalPages = Math.ceil(count / limit);
 
       const data = {
-        movies: rows,
+        rows,
         totalRows: count,
         currentPage: page,
         firstPage: 1,
