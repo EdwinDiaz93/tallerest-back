@@ -18,7 +18,7 @@ yarn install or npm  install
 ```
 yarn build or npm run build
 ```
-6. uo the server with
+6. up the server with
 ```
     yarn dev or npm run dev
 ```
