@@ -2,7 +2,7 @@
 
 1. Clone the project with the next command:
 ```
-git clone https://github.com/EdwinDiaz93/tallerest-front.git
+git clone https://github.com/EdwinDiaz93/tallerest-back.git
 ```
 
 2. Install all dependencies 
