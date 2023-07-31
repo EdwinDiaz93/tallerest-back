@@ -29,6 +29,7 @@ export class AuthController {
                 id: user.id,
                 name: user.name,
                 email: user.email,
+                roles,
                 token
             });
 
@@ -60,8 +61,8 @@ export class AuthController {
             })
 
             return res.status(200).json({
-                ok:true,
-                msg:'User registered'
+                ok: true,
+                msg: 'User registered'
             });
 
         } catch (error) {
@@ -71,6 +72,19 @@ export class AuthController {
                 msg: 'Internal server error',
             })
         }
+    }
+
+    static async refreshToken(req: Request, res: Response) {
+        // @ts-ignore
+        const { user } = req;
+        const token = await sign({ id: user.id, name: user.name, email: user.email, roles: user.roles });
+        return res.json({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            roles: user.roles,
+            token
+        });
     }
 
 }

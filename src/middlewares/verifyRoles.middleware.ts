@@ -3,7 +3,7 @@ import { Roles } from "../constants/roles.constants";
 
 
 
-export const verifyRoles = (roles: Roles) => (req: Request, res: Response, next: NextFunction) => {
+export const verifyRoles = (roles: Roles[]) => (req: Request, res: Response, next: NextFunction) => {
 
     //@ts-ignore
     const authorized = req.user.roles.some(rol => roles.includes(rol.name));
